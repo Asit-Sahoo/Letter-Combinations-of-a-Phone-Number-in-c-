@@ -1,0 +1,106 @@
+class Solution {
+public:
+    string check(int n){
+        string k;
+        switch(n){
+            case 2:
+                 k="abc";
+                 break;
+            case 3:
+                k="def";
+                break;
+            case 4:
+                k="ghi";
+                break;
+            case 5:
+                k="jkl";
+                break;
+            case 6:
+                k="mno";
+                break;
+            case 7:
+                k="pqrs";
+                break;
+            case 8:
+                k="tuv";
+                break;
+            case 9:
+                k="wxyz";
+                break;
+            default:
+                break;
+                
+}
+return k;
+    }
+    vector<string>combination(string a,string b){
+      vector<string>res;
+        for(int i=0;i<a.length();i++){
+            for(int j=0;j<b.length();j++){
+                string k;
+                k+=a[i];
+                k+=b[j];
+                res.push_back(k);
+}
+        }
+        return res;
+    }
+    vector<string>combination1(vector<string>res1,string a){
+        vector<string>res;
+        for(int i=0;i<res1.size();i++){
+            for(int j=0;j<a.length();j++){
+                string k;
+                k+=res1[i];
+                k+=a[j];
+                res.push_back(k);
+            }
+        }
+        return res;
+    }
+    vector<string> letterCombinations(string digits) {
+        int j=0;
+        vector<int>rima;
+        for(int i=0;i<digits.length();i++){
+            int a=digits[i]-'0';
+            rima.push_back(a);
+    }
+         vector<string>asit;
+        vector<string>res;
+        vector<string>res1;
+        while(j<rima.size()){
+            asit.push_back(check(rima[j]));
+            j++;
+        }
+        if(asit.size()==0){
+            return res;
+        }
+        else if(asit.size()==1){
+            string m=asit[0];
+            for(int i=0;i<m.length();i++){
+                string k;
+                k+=m[i];
+                res.push_back(k);
+            }
+            return res;
+        }
+        else if(asit.size()==2){
+        res=combination(asit[0],asit[1]);
+        }
+        else if(asit.size()==3){
+            
+            res1=combination(asit[0],asit[1]);
+            res=combination1(res1,asit[2]);
+        }
+        else if(asit.size()==4){
+            vector<string>res2;
+            res1=combination(asit[0],asit[1]);
+            res2=combination1(res1,asit[2]);
+            res=combination1(res2,asit[3]);
+            
+            
+        }
+        
+        
+        return res;
+    }
+};
